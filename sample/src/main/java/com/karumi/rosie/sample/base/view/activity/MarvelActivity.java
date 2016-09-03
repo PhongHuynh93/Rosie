@@ -20,31 +20,35 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.karumi.rosie.sample.R;
 import com.karumi.rosie.view.RosieActivity;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public abstract class MarvelActivity extends RosieActivity {
-  @Override protected abstract int getLayoutId();
+    @Override
+    protected abstract int getLayoutId();
 
-  @Nullable @OnClick(R.id.iv_toolbar_back) public void onBackButtonClicked() {
-    finish();
-  }
+    @Nullable
+    @OnClick(R.id.iv_toolbar_back)
+    public void onBackButtonClicked() {
+        finish();
+    }
 
-  @Override
-  protected void onPrepareActivity() {
-    super.onPrepareActivity();
-    ButterKnife.bind(this);
-  }
+    @Override
+    protected void onPrepareActivity() {
+        super.onPrepareActivity();
+        ButterKnife.bind(this);
+    }
 
-  public void showGenericError() {
-    View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-    Snackbar.make(rootView, getString(R.string.generic_error), Snackbar.LENGTH_SHORT).show();
-  }
+    public void showGenericError() {
+        View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(rootView, getString(R.string.generic_error), Snackbar.LENGTH_SHORT).show();
+    }
 
-  public void showConnectionError() {
-    View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-    Snackbar.make(rootView, getString(R.string.connection_error), Snackbar.LENGTH_SHORT).show();
-  }
+    public void showConnectionError() {
+        View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(rootView, getString(R.string.connection_error), Snackbar.LENGTH_SHORT).show();
+    }
 }

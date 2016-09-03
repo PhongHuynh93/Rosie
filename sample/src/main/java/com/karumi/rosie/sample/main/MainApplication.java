@@ -17,35 +17,39 @@
 package com.karumi.rosie.sample.main;
 
 import com.karumi.rosie.application.RosieApplication;
-import dagger.ObjectGraph;
+
 import java.util.Arrays;
 import java.util.List;
 
+import dagger.ObjectGraph;
+
 /**
- * Sample application that registers the global application dependencies.
+ * todo 1 - Sample application that registers the global application dependencies.
  */
 public class MainApplication extends RosieApplication {
-  private ObjectGraph fakeObjectGraph;
+    private ObjectGraph fakeObjectGraph;
 
-  @Override protected List<Object> getApplicationModules() {
-    return Arrays.asList((Object) new ApplicationModule());
-  }
-
-  public void replaceGraph(ObjectGraph objectGraph) {
-    this.fakeObjectGraph = objectGraph;
-  }
-
-  @Override public ObjectGraph plusGraph(List<Object> activityScopeModules) {
-    ObjectGraph newObjectGraph;
-    if (fakeObjectGraph == null) {
-      newObjectGraph = super.plusGraph(activityScopeModules);
-    } else {
-      newObjectGraph = fakeObjectGraph.plus(activityScopeModules.toArray());
+    @Override
+    protected List<Object> getApplicationModules() {
+        return Arrays.asList((Object) new ApplicationModule());
     }
-    return newObjectGraph;
-  }
 
-  public void resetFakeGraph() {
-    fakeObjectGraph = null;
-  }
+    public void replaceGraph(ObjectGraph objectGraph) {
+        this.fakeObjectGraph = objectGraph;
+    }
+
+    @Override
+    public ObjectGraph plusGraph(List<Object> activityScopeModules) {
+        ObjectGraph newObjectGraph;
+        if (fakeObjectGraph == null) {
+            newObjectGraph = super.plusGraph(activityScopeModules);
+        } else {
+            newObjectGraph = fakeObjectGraph.plus(activityScopeModules.toArray());
+        }
+        return newObjectGraph;
+    }
+
+    public void resetFakeGraph() {
+        fakeObjectGraph = null;
+    }
 }
